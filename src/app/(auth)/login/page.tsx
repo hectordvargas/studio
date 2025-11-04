@@ -180,9 +180,9 @@ export default function LoginPage() {
             }
         } else {
             title = t('login.toast.loginError');
-             if (error.code === 'auth/user-not-found') {
+             if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
                 description = 'Usuario no encontrado. Si eres el administrador, usa el botón "Crear Usuario Root".';
-            } else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+            } else if (error.code === 'auth/wrong-password') {
                 description = t('login.toast.loginErrorDescription');
             } else if (error.code === 'auth/too-many-requests') {
                 description = t('login.toast.loginErrorTooMany');
