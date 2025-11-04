@@ -57,7 +57,8 @@ export type PsychometricTest = {
   title: string;
   description: string;
   items: number;
-  factors: string[];
+  duration: string;
+  areas: string[];
 };
 
 export type TechnicalTest = {
@@ -165,18 +166,49 @@ export const applications: Application[] = [
 
 export const psychometricTests: PsychometricTest[] = [
   {
-    title: "Test de Personalidad PPA",
-    description: "Análisis de Perfil Personal para evaluar comportamiento en el entorno laboral.",
-    items: 120,
-    factors: ["Dominancia", "Influencia", "Estabilidad", "Cumplimiento"]
+    title: "Test de Termann-Merril",
+    description: "Evalúa la inteligencia y el coeficiente intelectual (CI) a través de diez sub-pruebas que miden habilidades verbales, numéricas, y de razonamiento abstracto. Ideal para procesos de selección y desarrollo.",
+    items: 150,
+    duration: "45-60 min",
+    areas: ["Inteligencia General", "Razonamiento Verbal", "Razonamiento Numérico", "Abstracción"]
   },
   {
-    title: "Test de Inteligencia Emocional TEI",
-    description: "Mide la capacidad para percibir, asimilar, comprender y regular las emociones.",
-    items: 153,
-    factors: ["Autoconciencia", "Autocontrol", "Motivación", "Empatía", "Habilidad Social"]
+    title: "Test de Cleaver (DISC)",
+    description: "Mide el comportamiento y la personalidad en el entorno laboral, identificando cuatro dimensiones: Dominancia, Influencia, Estabilidad y Cumplimiento. Útil para la formación de equipos y roles de liderazgo.",
+    items: 24,
+    duration: "15-20 min",
+    areas: ["Liderazgo", "Comunicación", "Toma de Decisiones", "Trabajo en Equipo"]
+  },
+  {
+    title: "Test de Dominós D-48",
+    description: "Prueba no verbal que evalúa la inteligencia general (Factor G) a través de la capacidad de una persona para identificar leyes lógicas en series de fichas de dominó. Mide la capacidad de abstracción y razonamiento sistemático.",
+    items: 48,
+    duration: "25 min",
+    areas: ["Inteligencia General", "Razonamiento Abstracto", "Lógica"]
+  },
+  {
+    title: "Test de Honestidad y Valores (Honesti-Valius)",
+    description: "Evalúa la integridad, honestidad y los valores éticos de un candidato. Ayuda a predecir comportamientos contraproducentes en el trabajo y a asegurar la alineación con la cultura de la empresa.",
+    items: 80,
+    duration: "20-30 min",
+    areas: ["Honestidad", "Ética Laboral", "Responsabilidad", "Lealtad"]
+  },
+  {
+    title: "Inventario de Personalidad 16PF",
+    description: "Cuestionario de personalidad que mide 16 factores primarios y 5 dimensiones secundarias, proporcionando un perfil completo del individuo. Utilizado en selección, orientación vocacional y desarrollo personal.",
+    items: 185,
+    duration: "30-40 min",
+    areas: ["Personalidad", "Estabilidad Emocional", "Relaciones Interpersonales", "Afrontamiento"]
+  },
+  {
+    title: "Test de Moss",
+    description: "Evalúa las habilidades de liderazgo y supervisión, midiendo la capacidad para tomar decisiones, manejar personal, evaluar problemas y establecer relaciones interpersonales en un contexto gerencial.",
+    items: 30,
+    duration: "20-25 min",
+    areas: ["Liderazgo", "Gestión de Personal", "Toma de Decisiones", "Relaciones Interpersonales"]
   }
 ];
+
 
 export const technicalTests: TechnicalTest[] = [
     {
@@ -190,5 +222,17 @@ export const technicalTests: TechnicalTest[] = [
         description: "Mide la capacidad de resolución de problemas complejos y eficiencia de código.",
         level: "Intermedio/Avanzado",
         skills: ["Algoritmos", "Estructura de Datos", "Complejidad"]
+    },
+    {
+      title: "Prueba de Node.js y Express",
+      description: "Evalúa la habilidad para construir APIs RESTful, manejar middleware y conectar a bases de datos.",
+      level: "Intermedio",
+      skills: ["Node.js", "Express", "API REST", "MongoDB"]
+    },
+    {
+      title: "Prueba de Conocimientos en SQL",
+      description: "Mide la competencia en la escritura de consultas SQL complejas, incluyendo joins, subconsultas y funciones de ventana.",
+      level: "Avanzado",
+      skills: ["SQL", "Modelado de Datos", "Optimización de Consultas"]
     }
 ];
