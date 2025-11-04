@@ -5,25 +5,6 @@ import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/app/layout";
 import Link from "next/link";
-import es from '@/lib/locales/es.json';
-
-export const defaultFooterContent = `
-    <p>&copy; ${new Date().getFullYear()} ${es.publicPages.footer.line1.replace('{year}', new Date().getFullYear().toString())}</p>
-    <p>${es.publicPages.footer.line2}</p>
-    <div class="flex justify-center gap-x-2 flex-wrap">
-      <span>${es.publicPages.footer.line3_1}</span>
-      <span class="text-muted-foreground/50">|</span>
-      <span>${es.publicPages.footer.line3_2}</span>
-      <span class="text-muted-foreground/50">|</span>
-      <span>${es.publicPages.footer.line3_3}</span>
-    </div>
-    <div class="flex justify-center gap-x-4">
-      <a href="tel:+442038380707" class="hover:underline">${es.publicPages.footer.line4_1}</a>
-      <span class="text-muted-foreground/50">|</span>
-      <a href="mailto:support@altiaweb.co.uk" class="hover:underline">${es.publicPages.footer.line4_2}</a>
-    </div>
-`;
-
 
 export default function PublicLayout({
   children,

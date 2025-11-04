@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from "next/link";
@@ -6,18 +7,35 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Briefcase, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { defaultFooterContent } from "./layout";
 import { Job, Company } from "@/lib/data";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, where } from "firebase/firestore";
+import { useTranslation } from "@/app/layout";
 
 
-function PublicFooter({ content }: { content: string }) {
+function PublicFooter() {
+    const { t } = useTranslation();
+    const footerContent = `
+    <p>&copy; ${new Date().getFullYear()} ${t('publicPages.footer.line1').replace('{year}', new Date().getFullYear().toString())}</p>
+    <p>${t('publicPages.footer.line2')}</p>
+    <div class="flex justify-center gap-x-2 flex-wrap">
+      <span>${t('publicPages.footer.line3_1')}</span>
+      <span class="text-muted-foreground/50">|</span>
+      <span>${t('publicPages.footer.line3_2')}</span>
+      <span class="text-muted-foreground/50">|</span>
+      <span>${t('publicPages.footer.line3_3')}</span>
+    </div>
+    <div class="flex justify-center gap-x-4">
+      <a href="tel:+442038380707" class="hover:underline">${t('publicPages.footer.line4_1')}</a>
+      <span class="text-muted-foreground/50">|</span>
+      <a href="mailto:support@altiaweb.co.uk" class="hover:underline">${t('publicPages.footer.line4_2')}</a>
+    </div>
+`;
     return (
         <footer className="bg-muted text-muted-foreground py-8">
             <div
                 className="container mx-auto max-w-5xl text-center text-xs space-y-2"
-                dangerouslySetInnerHTML={{ __html: content }}
+                dangerouslySetInnerHTML={{ __html: footerContent }}
             />
         </footer>
     );
@@ -104,7 +122,7 @@ export default function PublicJobsPage() {
                 </div>
                 )}
             </div>
-            <PublicFooter content={defaultFooterContent} />
+            <PublicFooter />
         </>
     );
 }
