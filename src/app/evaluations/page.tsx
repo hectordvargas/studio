@@ -6,7 +6,7 @@ import { PlusCircle, Clock, CheckCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { psychometricTests, technicalTests } from "@/lib/data";
+import { psychometricTestCategories, technicalTests } from "@/lib/data";
 
 export default function EvaluationsPage() {
   return (
@@ -27,35 +27,42 @@ export default function EvaluationsPage() {
           <TabsTrigger value="languages">Evaluaciones de Idiomas</TabsTrigger>
         </TabsList>
         <TabsContent value="psychometric" className="mt-4">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {psychometricTests.map(test => (
-                    <Card key={test.title} className="flex flex-col">
-                        <CardHeader>
-                            <CardTitle>{test.title}</CardTitle>
-                            <CardDescription>{test.description}</CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-grow space-y-4">
-                           <div className="flex items-center text-sm text-muted-foreground">
-                            <CheckCircle className="mr-2 h-4 w-4 text-primary"/>
-                            <span>{test.items} reactivos</span>
-                           </div>
-                           <div className="flex items-center text-sm text-muted-foreground">
-                            <Clock className="mr-2 h-4 w-4 text-primary"/>
-                            <span>{test.duration}</span>
-                           </div>
-                           <div>
-                            <h4 className="mb-2 font-semibold">Áreas evaluadas:</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {test.areas.map(area => <Badge key={area} variant="secondary">{area}</Badge>)}
-                            </div>
-                           </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button variant="outline">Ver Detalles</Button>
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
+          <div className="space-y-8">
+            {psychometricTestCategories.map((category) => (
+              <section key={category.category}>
+                <h2 className="mb-4 text-xl font-semibold">{category.category}</h2>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {category.tests.map(test => (
+                      <Card key={test.title} className="flex flex-col">
+                          <CardHeader>
+                              <CardTitle>{test.title}</CardTitle>
+                              <CardDescription>{test.description}</CardDescription>
+                          </CardHeader>
+                          <CardContent className="flex-grow space-y-4">
+                             <div className="flex items-center text-sm text-muted-foreground">
+                              <CheckCircle className="mr-2 h-4 w-4 text-primary"/>
+                              <span>{test.items} reactivos</span>
+                             </div>
+                             <div className="flex items-center text-sm text-muted-foreground">
+                              <Clock className="mr-2 h-4 w-4 text-primary"/>
+                              <span>{test.duration}</span>
+                             </div>
+                             <div>
+                              <h4 className="mb-2 font-semibold">Áreas evaluadas:</h4>
+                              <div className="flex flex-wrap gap-2">
+                                  {test.areas.map(area => <Badge key={area} variant="secondary">{area}</Badge>)}
+                              </div>
+                             </div>
+                          </CardContent>
+                          <CardFooter>
+                              <Button variant="outline">Ver Detalles</Button>
+                          </CardFooter>
+                      </Card>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </TabsContent>
         <TabsContent value="technical" className="mt-4">
            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

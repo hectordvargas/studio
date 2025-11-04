@@ -61,6 +61,11 @@ export type PsychometricTest = {
   areas: string[];
 };
 
+export type PsychometricTestCategory = {
+  category: string;
+  tests: PsychometricTest[];
+};
+
 export type TechnicalTest = {
   title: string;
   description: string;
@@ -164,48 +169,68 @@ export const applications: Application[] = [
   { id: 'app4', jobId: 'job2', candidateId: 'c3', applicationDate: '2024-05-12', status: 'Pending' }
 ];
 
-export const psychometricTests: PsychometricTest[] = [
+export const psychometricTestCategories: PsychometricTestCategory[] = [
   {
-    title: "Test de Termann-Merril",
-    description: "Evalúa la inteligencia y el coeficiente intelectual (CI) a través de diez sub-pruebas que miden habilidades verbales, numéricas, y de razonamiento abstracto. Ideal para procesos de selección y desarrollo.",
-    items: 150,
-    duration: "45-60 min",
-    areas: ["Inteligencia General", "Razonamiento Verbal", "Razonamiento Numérico", "Abstracción"]
+    category: "Inteligencia y Habilidades Cognitivas",
+    tests: [
+      {
+        title: "Test de Termann-Merril",
+        description: "Evalúa la inteligencia y el coeficiente intelectual (CI) a través de diez sub-pruebas que miden habilidades verbales, numéricas y de razonamiento abstracto. Ideal para procesos de selección y desarrollo.",
+        items: 150,
+        duration: "45-60 min",
+        areas: ["Inteligencia General", "Razonamiento Verbal", "Razonamiento Numérico", "Abstracción", "Concentración", "Juicio Práctico"]
+      },
+      {
+        title: "Test de Dominós D-48",
+        description: "Prueba no verbal que evalúa la inteligencia general (Factor G) a través de la capacidad de una persona para identificar leyes lógicas en series de fichas de dominó. Mide la capacidad de abstracción y razonamiento sistemático.",
+        items: 48,
+        duration: "25 min",
+        areas: ["Inteligencia General", "Razonamiento Abstracto", "Lógica", "Atención"]
+      },
+    ]
   },
   {
-    title: "Test de Cleaver (DISC)",
-    description: "Mide el comportamiento y la personalidad en el entorno laboral, identificando cuatro dimensiones: Dominancia, Influencia, Estabilidad y Cumplimiento. Útil para la formación de equipos y roles de liderazgo.",
-    items: 24,
-    duration: "15-20 min",
-    areas: ["Liderazgo", "Comunicación", "Toma de Decisiones", "Trabajo en Equipo"]
+    category: "Personalidad y Comportamiento",
+    tests: [
+       {
+        title: "Test de Cleaver (DISC)",
+        description: "Mide el comportamiento y la personalidad en el entorno laboral, identificando cuatro dimensiones: Dominancia, Influencia, Estabilidad y Cumplimiento. Útil para la formación de equipos y roles de liderazgo.",
+        items: 24,
+        duration: "15-20 min",
+        areas: ["Liderazgo", "Comunicación", "Toma de Decisiones", "Trabajo en Equipo", "Comportamiento Laboral"]
+      },
+       {
+        title: "Inventario de Personalidad 16PF",
+        description: "Cuestionario de personalidad que mide 16 factores primarios y 5 dimensiones secundarias, proporcionando un perfil completo del individuo. Utilizado en selección, orientación vocacional y desarrollo personal.",
+        items: 185,
+        duration: "30-40 min",
+        areas: ["Personalidad", "Estabilidad Emocional", "Relaciones Interpersonales", "Afrontamiento", "Autocontrol"]
+      },
+    ]
   },
   {
-    title: "Test de Dominós D-48",
-    description: "Prueba no verbal que evalúa la inteligencia general (Factor G) a través de la capacidad de una persona para identificar leyes lógicas en series de fichas de dominó. Mide la capacidad de abstracción y razonamiento sistemático.",
-    items: 48,
-    duration: "25 min",
-    areas: ["Inteligencia General", "Razonamiento Abstracto", "Lógica"]
+    category: "Integridad y Valores",
+    tests: [
+       {
+        title: "Test de Honestidad y Valores (Honesti-Valius)",
+        description: "Evalúa la integridad, honestidad y los valores éticos de un candidato. Ayuda a predecir comportamientos contraproducentes en el trabajo y a asegurar la alineación con la cultura de la empresa.",
+        items: 80,
+        duration: "20-30 min",
+        areas: ["Honestidad", "Ética Laboral", "Responsabilidad", "Lealtad", "Integridad"]
+      },
+    ]
   },
   {
-    title: "Test de Honestidad y Valores (Honesti-Valius)",
-    description: "Evalúa la integridad, honestidad y los valores éticos de un candidato. Ayuda a predecir comportamientos contraproducentes en el trabajo y a asegurar la alineación con la cultura de la empresa.",
-    items: 80,
-    duration: "20-30 min",
-    areas: ["Honestidad", "Ética Laboral", "Responsabilidad", "Lealtad"]
-  },
-  {
-    title: "Inventario de Personalidad 16PF",
-    description: "Cuestionario de personalidad que mide 16 factores primarios y 5 dimensiones secundarias, proporcionando un perfil completo del individuo. Utilizado en selección, orientación vocacional y desarrollo personal.",
-    items: 185,
-    duration: "30-40 min",
-    areas: ["Personalidad", "Estabilidad Emocional", "Relaciones Interpersonales", "Afrontamiento"]
-  },
-  {
-    title: "Test de Moss",
-    description: "Evalúa las habilidades de liderazgo y supervisión, midiendo la capacidad para tomar decisiones, manejar personal, evaluar problemas y establecer relaciones interpersonales en un contexto gerencial.",
-    items: 30,
-    duration: "20-25 min",
-    areas: ["Liderazgo", "Gestión de Personal", "Toma de Decisiones", "Relaciones Interpersonales"]
+    category: "Liderazgo y Gestión",
+    tests: [
+      {
+        title: "Test de Moss",
+        description: "Evalúa las habilidades de liderazgo y supervisión, midiendo la capacidad para tomar decisiones, manejar personal, evaluar problemas y establecer relaciones interpersonales en un contexto gerencial.",
+        items: 30,
+        duration: "20-25 min",
+        areas: ["Liderazgo", "Gestión de Personal", "Toma de Decisiones", "Relaciones Interpersonales", "Habilidad de Supervisión"]
+      }
+    ]
   }
 ];
 
@@ -236,3 +261,5 @@ export const technicalTests: TechnicalTest[] = [
       skills: ["SQL", "Modelado de Datos", "Optimización de Consultas"]
     }
 ];
+
+export const psychometricTests = psychometricTestCategories.flatMap(c => c.tests);
