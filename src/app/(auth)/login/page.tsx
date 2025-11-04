@@ -32,20 +32,49 @@ function AuthForm({
 }: {
   isRegister?: boolean;
   isLoading: boolean;
-  onSubmit: (email: string, pass: string) => Promise<void>;
+  onSubmit: (email: string, pass: string, name?: string) => Promise<void>;
 }) {
   const [email, setEmail] = useState(isRegister ? '' : 'system@kognisync.com');
   const [password, setPassword] = useState(isRegister ? '' : 'password123');
+  const [name, setName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(email, password);
+    onSubmit(email, password, isRegister ? name : undefined);
   };
+  
+  const buttonText = () => {
+      if (isLoading) {
+          return isRegister ? t('login.registering') : t('login.loggingIn');
+      }
+      if(isRegister){
+          return t('login.registerButton');
+      }
+      // Special case for root user creation
+      if(email === 'system@kognisync.com' && !isRegister) {
+          return "Crear Usuario Root";
+      }
+      return t('login.loginButton');
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {isRegister && (
+         <div className="space-y-2">
+            <Label htmlFor="register-name">Nombre</Label>
+            <Input
+              id="register-name"
+              type="text"
+              placeholder="Tu Nombre"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              disabled={isLoading}
+            />
+        </div>
+      )}
       <div className="space-y-2">
         <Label htmlFor={isRegister ? 'register-email' : 'login-email'}>{t('login.email')}</Label>
         <Input
@@ -55,7 +84,7 @@ function AuthForm({
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          disabled={isLoading}
+          disabled={isLoading || (email === 'system@kognisync.com' && !isRegister)}
         />
       </div>
       <div className="space-y-2">
@@ -84,7 +113,7 @@ function AuthForm({
       </div>
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        {isLoading ? (isRegister ? t('login.registering') : t('login.loggingIn')) : (isRegister ? t('login.registerButton') : t('login.loginButton'))}
+        {buttonText()}
       </Button>
     </form>
   );
@@ -98,79 +127,73 @@ export default function LoginPage() {
   const [activeTab, setActiveTab] = useState('login');
   const { t } = useTranslation();
 
-  const handleLogin = async (email: string, password: string) => {
-    if (!auth) return;
-    setIsLoading(true);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast({
-        title: t('login.toast.loginSuccess'),
-        description: t('login.toast.loginSuccessDescription'),
-      });
-      // onAuthStateChanged in the layout will handle the redirect
-    } catch (error: any) {
-      console.error("Login Error:", error);
-      let description = t('login.toast.loginErrorDescription');
-       if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-          description = t('login.toast.loginErrorDescription');
-      } else if (error.code === 'auth/too-many-requests') {
-        description = t('login.toast.loginErrorTooMany');
-      }
-      toast({
-        variant: 'destructive',
-        title: t('login.toast.loginError'),
-        description: description,
-      });
-    } finally {
-        setIsLoading(false);
-    }
-  };
-
-  const handleRegister = async (email: string, password: string) => {
+  const handleAuthAction = async (email: string, password: string, name?: string) => {
     if (!auth || !firestore) return;
     setIsLoading(true);
+
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        const nameFromEmail = email.split('@')[0];
-        await updateProfile(user, {
-            displayName: nameFromEmail
-        });
+        if (activeTab === 'register' && name) { // Registering a new candidate
+             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            await updateProfile(user, { displayName: name });
 
-        // Create user profile document in Firestore
-        const userRef = doc(firestore, 'users', user.uid);
+            const newUserProfile: Omit<UserProfile, 'id'> = {
+                email: user.email!, displayName: name, role: 'Candidato', companyIds: [],
+            };
+            
+            await setDocumentNonBlocking(doc(firestore, 'users', user.uid), newUserProfile, { merge: true });
 
-        const newUserProfile: Omit<UserProfile, 'id'> = {
-            email: user.email!,
-            displayName: nameFromEmail,
-            role: 'Candidato', // Default role for new sign-ups
-            companyIds: [],
-        };
-        
-        await setDocumentNonBlocking(userRef, newUserProfile, { merge: true });
+            toast({ title: t('login.toast.registerSuccess'), description: t('login.toast.registerSuccessDescription') });
 
-        toast({
-            title: t('login.toast.registerSuccess'),
-            description: t('login.toast.registerSuccessDescription'),
-        });
-        // onAuthStateChanged will handle the redirect
-    } catch (error: any) {
-        console.error("Creation Error:", error);
-        let description = t('login.toast.registerErrorDescription');
-        if (error.code === 'auth/email-already-in-use') {
-            description = t('login.toast.registerErrorEmailInUse');
-        } else if (error.code === 'auth/weak-password') {
-            description = t('login.toast.registerErrorWeakPassword');
+        } else if (email === 'system@kognisync.com') { // Creating root user
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            const displayName = "System Root";
+            await updateProfile(user, { displayName });
+
+            const newUserProfile: Omit<UserProfile, 'id'> = {
+                email: user.email!, displayName, role: 'root', companyIds: [], isGlobalAdmin: true, canManageAllCompanies: true, requiresPasswordChange: false,
+            };
+
+            await setDocumentNonBlocking(doc(firestore, 'users', user.uid), newUserProfile, { merge: true });
+            
+            toast({ title: "Usuario Root Creado", description: "Inicia sesión con las nuevas credenciales." });
+             setActiveTab('login'); // Switch back to login view after creation
+
+        } else { // Standard login
+            await signInWithEmailAndPassword(auth, email, password);
+            toast({ title: t('login.toast.loginSuccess'), description: t('login.toast.loginSuccessDescription') });
         }
-        toast({
-            variant: 'destructive',
-            title: t('login.toast.registerError'),
-            description: description,
-        });
+    } catch (error: any) {
+        console.error("Auth Error:", error);
+        let title = "Error";
+        let description = "Ha ocurrido un error.";
+
+        if (activeTab === 'register') {
+            title = t('login.toast.registerError');
+            if (error.code === 'auth/email-already-in-use') {
+              description = "Este correo ya está en uso. Intenta iniciar sesión o crear el usuario Root si es el caso.";
+            } else if (error.code === 'auth/weak-password') {
+              description = t('login.toast.registerErrorWeakPassword');
+            } else {
+              description = t('login.toast.registerErrorDescription');
+            }
+        } else {
+            title = t('login.toast.loginError');
+             if (error.code === 'auth/user-not-found') {
+                description = 'Usuario no encontrado. Si eres el administrador, usa el botón "Crear Usuario Root".';
+            } else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                description = t('login.toast.loginErrorDescription');
+            } else if (error.code === 'auth/too-many-requests') {
+                description = t('login.toast.loginErrorTooMany');
+            }
+        }
+        toast({ variant: 'destructive', title, description });
     } finally {
         setIsLoading(false);
     }
   };
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
@@ -188,16 +211,16 @@ export default function LoginPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="login" className="w-full" onValueChange={setActiveTab}>
+            <Tabs defaultValue="login" className="w-full" onValueChange={setActiveTab} value={activeTab}>
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="login">{t('login.tabs.login')}</TabsTrigger>
                     <TabsTrigger value="register">{t('login.tabs.register')}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="login" className="pt-4">
-                    <AuthForm isLoading={isLoading} onSubmit={handleLogin} />
+                    <AuthForm isLoading={isLoading} onSubmit={handleAuthAction} />
                 </TabsContent>
                 <TabsContent value="register" className="pt-4">
-                    <AuthForm isRegister isLoading={isLoading} onSubmit={handleRegister} />
+                    <AuthForm isRegister isLoading={isLoading} onSubmit={handleAuthAction} />
                 </TabsContent>
             </Tabs>
           </CardContent>

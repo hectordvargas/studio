@@ -1,13 +1,13 @@
 
 
-import { AnalyzeCandidateProfileOutput } from "@/ai/flows/analyze-candidate-profiles";
+import { AnalyzeCandidateProfileOutput } from "@/ai/flows/analyze-candidate-profile";
 
 export type UserProfile = {
   id: string;
   displayName: string;
   email: string;
   role: 'root' | 'Superadmin' | 'Tech/Soporte' | 'Distribuidor' | 'Administrador' | 'Supervisor' | 'Reclutador' | 'Entrevistador' | 'Lector' | 'Candidato';
-  companyIds?: string[];
+  companyIds: string[];
   requiresPasswordChange?: boolean;
   isGlobalAdmin?: boolean;
   canManageAllCompanies?: boolean;
