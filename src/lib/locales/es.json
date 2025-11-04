@@ -215,7 +215,7 @@
       "login": "Iniciar Sesión",
       "register": "Registrarse"
     },
-    "rootHint": "Usa el correo <1>system@kognisync.com</1> y la contraseña <3>password123</3> para acceder como Root.",
+    "rootHint": "Usa el correo <code class=\"font-code mx-1 rounded bg-muted p-1\">system@kognisync.com</code> y la contraseña <code class=\"font-code mx-1 rounded bg-muted p-1\">password123</code> para acceder como Root.",
     "publicHint": "O ver las plazas públicas",
     "toast": {
       "loginSuccess": "Inicio de Sesión Exitoso",

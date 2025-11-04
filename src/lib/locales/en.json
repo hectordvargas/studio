@@ -215,7 +215,7 @@
       "login": "Log In",
       "register": "Sign Up"
     },
-    "rootHint": "Use email <1>system@kognisync.com</1> and password <3>password123</3> to access as Root.",
+    "rootHint": "Use email <code class=\"font-code mx-1 rounded bg-muted p-1\">system@kognisync.com</code> and password <code class=\"font-code mx-1 rounded bg-muted p-1\">password123</code> to access as Root.",
     "publicHint": "Or view public jobs",
     "toast": {
       "loginSuccess": "Login Successful",

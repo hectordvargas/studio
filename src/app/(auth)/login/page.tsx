@@ -22,6 +22,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfi
 import { doc } from "firebase/firestore";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import type { UserProfile } from '@/lib/data';
+import { useTranslation } from '@/app/(app)/layout';
 
 function AuthForm({
   isRegister = false,
@@ -35,6 +36,7 @@ function AuthForm({
   const [email, setEmail] = useState(isRegister ? '' : 'system@kognisync.com');
   const [password, setPassword] = useState(isRegister ? '' : 'password123');
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,11 +46,11 @@ function AuthForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor={isRegister ? 'register-email' : 'login-email'}>Correo Electrónico</Label>
+        <Label htmlFor={isRegister ? 'register-email' : 'login-email'}>{t('login.email')}</Label>
         <Input
           id={isRegister ? 'register-email' : 'login-email'}
           type="email"
-          placeholder={isRegister ? 'tu@correo.com' : 'system@axushire.com'}
+          placeholder={isRegister ? 'tu@correo.com' : 'system@kognisync.com'}
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -56,7 +58,7 @@ function AuthForm({
         />
       </div>
       <div className="space-y-2">
-        <Label htmlFor={isRegister ? 'register-password' : 'login-password'}>Contraseña</Label>
+        <Label htmlFor={isRegister ? 'register-password' : 'login-password'}>{t('login.password')}</Label>
         <div className="relative">
             <Input
               id={isRegister ? 'register-password' : 'login-password'}
@@ -75,13 +77,13 @@ function AuthForm({
                 onClick={() => setShowPassword(!showPassword)}
                 >
                 {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-                <span className="sr-only">{showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}</span>
+                <span className="sr-only">{showPassword ? t('layout.passwordDialog.hidePassword') : t('layout.passwordDialog.showPassword')}</span>
             </Button>
         </div>
       </div>
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        {isLoading ? (isRegister ? 'Registrando...' : 'Accediendo...') : (isRegister ? 'Crear Cuenta' : 'Iniciar Sesión')}
+        {isLoading ? (isRegister ? t('login.registering') : t('login.loggingIn')) : (isRegister ? t('login.registerButton') : t('login.loginButton'))}
       </Button>
     </form>
   );
@@ -93,6 +95,7 @@ export default function LoginPage() {
   const firestore = useFirestore();
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('login');
+  const { t } = useTranslation();
 
   const handleLogin = async (email: string, password: string) => {
     if (!auth) return;
@@ -100,21 +103,21 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast({
-        title: 'Inicio de Sesión Exitoso',
-        description: '¡Bienvenido de nuevo!',
+        title: t('login.toast.loginSuccess'),
+        description: t('login.toast.loginSuccessDescription'),
       });
       // onAuthStateChanged in the layout will handle the redirect
     } catch (error: any) {
       console.error("Login Error:", error);
-      let description = 'Ocurrió un error inesperado.';
+      let description = t('login.toast.loginErrorDescription');
        if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-          description = 'El correo o la contraseña son incorrectos.'
+          description = t('login.toast.loginErrorDescription');
       } else if (error.code === 'auth/too-many-requests') {
-        description = 'Demasiados intentos fallidos. Intenta de nuevo más tarde.';
+        description = t('login.toast.loginErrorTooMany');
       }
       toast({
         variant: 'destructive',
-        title: 'Fallo en el Inicio de Sesión',
+        title: t('login.toast.loginError'),
         description: description,
       });
     } finally {
@@ -142,29 +145,25 @@ export default function LoginPage() {
             role: 'Candidato', // Default role for new sign-ups
             companyIds: [],
         };
-
-        // In a real app, a Cloud Function would listen to user creation
-        // and set the appropriate custom claims (e.g., for 'root' or 'Superadmin' based on email).
-        // For this demo, the claim is not set on the client.
         
         await setDocumentNonBlocking(userRef, newUserProfile, { merge: true });
 
         toast({
-            title: 'Cuenta Creada y Sesión Iniciada',
-            description: '¡Bienvenido! Se ha creado una nueva cuenta para ti.',
+            title: t('login.toast.registerSuccess'),
+            description: t('login.toast.registerSuccessDescription'),
         });
         // onAuthStateChanged will handle the redirect
     } catch (error: any) {
         console.error("Creation Error:", error);
-        let description = 'No se pudo crear la cuenta.';
+        let description = t('login.toast.registerErrorDescription');
         if (error.code === 'auth/email-already-in-use') {
-            description = 'Este correo electrónico ya está en uso. Intenta iniciar sesión.'
+            description = t('login.toast.registerErrorEmailInUse');
         } else if (error.code === 'auth/weak-password') {
-            description = 'La contraseña es demasiado débil. Debe tener al menos 6 caracteres.'
+            description = t('login.toast.registerErrorWeakPassword');
         }
         toast({
             variant: 'destructive',
-            title: 'Fallo en la Creación de Cuenta',
+            title: t('login.toast.registerError'),
             description: description,
         });
     } finally {
@@ -184,14 +183,14 @@ export default function LoginPage() {
             </div>
             <CardTitle className="font-headline text-3xl font-bold">AxusHire</CardTitle>
             <CardDescription>
-              {activeTab === 'login' ? 'Inicia sesión para acceder a tu panel de control.' : 'Crea una cuenta para empezar a gestionar talento.'}
+              {activeTab === 'login' ? t('login.title') : t('login.titleRegister')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full" onValueChange={setActiveTab}>
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="login">Iniciar Sesión</TabsTrigger>
-                    <TabsTrigger value="register">Registrarse</TabsTrigger>
+                    <TabsTrigger value="login">{t('login.tabs.login')}</TabsTrigger>
+                    <TabsTrigger value="register">{t('login.tabs.register')}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="login" className="pt-4">
                     <AuthForm isLoading={isLoading} onSubmit={handleLogin} />
@@ -202,9 +201,9 @@ export default function LoginPage() {
             </Tabs>
           </CardContent>
           <CardFooter className="flex-col gap-2 justify-center text-center text-xs text-muted-foreground">
-             <p>Usa el correo <code className="font-code mx-1 rounded bg-muted p-1">system@axushire.com</code> y la contraseña <code className="font-code mx-1 rounded bg-muted p-1">password123</code> para acceder como Root.</p>
+             <p dangerouslySetInnerHTML={{ __html: t('login.rootHint')}} />
               <Link href="/empleos" className="text-primary hover:underline">
-                O ver las plazas públicas
+                {t('login.publicHint')}
               </Link>
           </CardFooter>
         </Card>
@@ -212,5 +211,3 @@ export default function LoginPage() {
     </main>
   );
 }
-
-    
