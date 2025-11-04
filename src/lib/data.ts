@@ -1,3 +1,4 @@
+
 export type User = {
   id: string;
   name: string;
@@ -51,6 +52,21 @@ export type Application = {
   applicationDate: string;
   status: 'Pending' | 'Screening' | 'Interview' | 'Offer' | 'Hired' | 'Rejected';
 };
+
+export type PsychometricTest = {
+  title: string;
+  description: string;
+  items: number;
+  factors: string[];
+};
+
+export type TechnicalTest = {
+  title: string;
+  description: string;
+  level: string;
+  skills: string[];
+};
+
 
 // --- MOCK DATA ---
 
@@ -145,4 +161,34 @@ export const applications: Application[] = [
   { id: 'app2', jobId: 'job1', candidateId: 'c2', applicationDate: '2024-05-03', status: 'Screening' },
   { id: 'app3', jobId: 'job2', candidateId: 'c2', applicationDate: '2024-05-11', status: 'Pending' },
   { id: 'app4', jobId: 'job2', candidateId: 'c3', applicationDate: '2024-05-12', status: 'Pending' }
+];
+
+export const psychometricTests: PsychometricTest[] = [
+  {
+    title: "Test de Personalidad PPA",
+    description: "Análisis de Perfil Personal para evaluar comportamiento en el entorno laboral.",
+    items: 120,
+    factors: ["Dominancia", "Influencia", "Estabilidad", "Cumplimiento"]
+  },
+  {
+    title: "Test de Inteligencia Emocional TEI",
+    description: "Mide la capacidad para percibir, asimilar, comprender y regular las emociones.",
+    items: 153,
+    factors: ["Autoconciencia", "Autocontrol", "Motivación", "Empatía", "Habilidad Social"]
+  }
+];
+
+export const technicalTests: TechnicalTest[] = [
+    {
+        title: "Prueba de Habilidad en React",
+        description: "Evalúa el conocimiento en React, Hooks, Context API y patrones de diseño.",
+        level: "Senior",
+        skills: ["React", "JavaScript", "CSS", "Testing"]
+    },
+    {
+        title: "Desafío de Algoritmia",
+        description: "Mide la capacidad de resolución de problemas complejos y eficiencia de código.",
+        level: "Intermedio/Avanzado",
+        skills: ["Algoritmos", "Estructura de Datos", "Complejidad"]
+    }
 ];

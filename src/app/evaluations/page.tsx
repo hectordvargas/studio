@@ -1,3 +1,4 @@
+
 'use client';
 import { DashboardHeader } from "@/components/dashboard-header";
 import { Button } from "@/components/ui/button";
@@ -5,36 +6,7 @@ import { PlusCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-const psychometricTests = [
-  {
-    title: "Test de Personalidad PPA",
-    description: "Análisis de Perfil Personal para evaluar comportamiento en el entorno laboral.",
-    items: 120,
-    factors: ["Dominancia", "Influencia", "Estabilidad", "Cumplimiento"]
-  },
-  {
-    title: "Test de Inteligencia Emocional TEI",
-    description: "Mide la capacidad para percibir, asimilar, comprender y regular las emociones.",
-    items: 153,
-    factors: ["Autoconciencia", "Autocontrol", "Motivación", "Empatía", "Habilidad Social"]
-  }
-];
-
-const technicalTests = [
-    {
-        title: "Prueba de Habilidad en React",
-        description: "Evalúa el conocimiento en React, Hooks, Context API y patrones de diseño.",
-        level: "Senior",
-        skills: ["React", "JavaScript", "CSS", "Testing"]
-    },
-    {
-        title: "Desafío de Algoritmia",
-        description: "Mide la capacidad de resolución de problemas complejos y eficiencia de código.",
-        level: "Intermedio/Avanzado",
-        skills: ["Algoritmos", "Estructura de Datos", "Complejidad"]
-    }
-]
+import { psychometricTests, technicalTests } from "@/lib/data";
 
 export default function EvaluationsPage() {
   return (
