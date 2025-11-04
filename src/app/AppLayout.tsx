@@ -24,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Home, Briefcase, Users, Settings, LogOut, Eye } from "lucide-react";
+import { Home, Briefcase, Users, Settings, LogOut, Eye, ClipboardList } from "lucide-react";
 import { Logo } from "@/components/icons";
 
 
@@ -32,6 +32,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
   { href: "/jobs", label: "Ofertas de Trabajo", icon: Briefcase },
   { href: "/candidates", label: "Candidatos", icon: Users },
+  { href: "/evaluations", label: "Evaluaciones", icon: ClipboardList },
   { href: "/settings", label: "Ajustes", icon: Settings },
   { href: "/empleos", label: "Vista Pública", icon: Eye },
 ];
