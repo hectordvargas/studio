@@ -5,6 +5,7 @@ import { FirebaseApp } from 'firebase/app';
 import { Firestore } from 'firebase/firestore';
 import { Auth, User, onAuthStateChanged } from 'firebase/auth';
 import { FirebaseErrorListener } from '@/components/FirebaseErrorListener'
+import type { UserHookResult } from './auth/use-user';
 
 interface FirebaseProviderProps {
   children: ReactNode;
@@ -37,13 +38,6 @@ export interface FirebaseServicesAndUser {
   firebaseApp: FirebaseApp;
   firestore: Firestore;
   auth: Auth;
-  user: User | null;
-  isUserLoading: boolean;
-  userError: Error | null;
-}
-
-// Return type for useUser() - specific to user auth state
-export interface UserHookResult { 
   user: User | null;
   isUserLoading: boolean;
   userError: Error | null;
@@ -164,16 +158,3 @@ export function useMemoFirebase<T>(factory: () => T, deps: DependencyList): T | 
   
   return memoized;
 }
-
-/**
- * Hook specifically for accessing the authenticated user's state.
- * This provides the User object, loading status, and any auth errors.
- * @returns {UserHookResult} Object with user, isUserLoading, userError.
- */
-export const useUser = (): UserHookResult => {
-  const context = useContext(FirebaseContext);
-   if (context === undefined) {
-    throw new Error('useUser must be used within a FirebaseProvider.');
-  }
-  return { user: context.user, isUserLoading: context.isUserLoading, userError: context.userError };
-};
