@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { DependencyList, createContext, useContext, ReactNode, useMemo, useState, useEffect } from 'react';
@@ -161,12 +162,14 @@ export function useMemoFirebase<T>(factory: () => T, deps: DependencyList): T {
   
   if(typeof memoized !== 'object' || memoized === null) return memoized;
 
-  Object.defineProperty(memoized, '__memo', {
-      value: true,
-      writable: false,
-      enumerable: false,
-      configurable: false
-  });
+  if (!Object.prototype.hasOwnProperty.call(memoized, '__memo')) {
+    Object.defineProperty(memoized, '__memo', {
+        value: true,
+        writable: false,
+        enumerable: false,
+        configurable: false
+    });
+  }
   
   return memoized;
 }
