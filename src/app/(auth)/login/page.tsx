@@ -146,20 +146,30 @@ export default function LoginPage() {
             toast({ title: t('login.toast.registerSuccess'), description: t('login.toast.registerSuccessDescription') });
 
         } else if (email === 'system@kognisync.com') { // Creating root user
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            const displayName = "System Root";
-            await updateProfile(user, { displayName });
+            try {
+                // First try to sign in, in case the user already exists.
+                await signInWithEmailAndPassword(auth, email, password);
+                toast({ title: "Inicio de Sesión Exitoso", description: "¡Bienvenido de nuevo, administrador!" });
+            } catch (signInError: any) {
+                if (signInError.code === 'auth/user-not-found' || signInError.code === 'auth/invalid-credential') {
+                    // If user doesn't exist, create it.
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+                    const displayName = "System Root";
+                    await updateProfile(user, { displayName });
 
-            const newUserProfile: Omit<UserProfile, 'id'> = {
-                email: user.email!, displayName, role: 'root', companyIds: [], isGlobalAdmin: true, canManageAllCompanies: true, requiresPasswordChange: false,
-            };
+                    const newUserProfile: Omit<UserProfile, 'id'> = {
+                        email: user.email!, displayName, role: 'root', companyIds: [], isGlobalAdmin: true, canManageAllCompanies: true, requiresPasswordChange: false,
+                    };
 
-            await setDocumentNonBlocking(doc(firestore, 'users', user.uid), newUserProfile, { merge: true });
-            
-            toast({ title: "Usuario Root Creado", description: "Inicia sesión con las nuevas credenciales." });
-             setActiveTab('login'); // Switch back to login view after creation
-
+                    await setDocumentNonBlocking(doc(firestore, 'users', user.uid), newUserProfile, { merge: true });
+                    
+                    toast({ title: "Usuario Root Creado", description: "Tu cuenta de administrador ha sido creada. Ahora puedes iniciar sesión." });
+                } else {
+                    // Re-throw other sign-in errors
+                    throw signInError;
+                }
+            }
         } else { // Standard login
             await signInWithEmailAndPassword(auth, email, password);
             toast({ title: t('login.toast.loginSuccess'), description: t('login.toast.loginSuccessDescription') });
@@ -178,10 +188,10 @@ export default function LoginPage() {
             } else {
               description = t('login.toast.registerErrorDescription');
             }
-        } else {
+        } else { // Login errors
             title = t('login.toast.loginError');
              if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-                description = 'Usuario no encontrado. Si eres el administrador, usa el botón "Crear Usuario Root".';
+                description = 'Credenciales incorrectas. Verifica el correo y la contraseña.';
             } else if (error.code === 'auth/wrong-password') {
                 description = t('login.toast.loginErrorDescription');
             } else if (error.code === 'auth/too-many-requests') {
