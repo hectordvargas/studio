@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -22,7 +23,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfi
 import { doc } from "firebase/firestore";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import type { UserProfile } from '@/lib/data';
-import { useTranslation } from '@/app/(app)/layout';
+import { useTranslation } from '@/app/layout';
 
 function AuthForm({
   isRegister = false,

@@ -1,8 +1,9 @@
 
+'use client';
 
 import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { FirebaseClientProvider } from "@/firebase";
+import { useTranslation } from "@/app/layout";
 import Link from "next/link";
 import es from '@/lib/locales/es.json';
 
@@ -29,8 +30,8 @@ export default function PublicLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   return (
-    <FirebaseClientProvider>
       <div className="min-h-screen flex flex-col">
         <nav className="border-b sticky top-0 bg-background/95 backdrop-blur z-10">
           <div className="container mx-auto max-w-5xl flex justify-between items-center h-16 px-4">
@@ -39,7 +40,7 @@ export default function PublicLayout({
               </Link>
               <div className="flex items-center gap-2">
                 <Button asChild>
-                    <Link href="/login">{es.publicPages.login}</Link>
+                    <Link href="/login">{t('publicPages.login')}</Link>
                 </Button>
               </div>
           </div>
@@ -48,6 +49,5 @@ export default function PublicLayout({
           {children}
         </main>
       </div>
-    </FirebaseClientProvider>
   );
 }

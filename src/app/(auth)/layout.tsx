@@ -3,7 +3,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { FirebaseClientProvider, useUser } from "@/firebase";
+import { useUser } from "@/firebase";
 import { Loader2 } from 'lucide-react';
 
 function AuthLayoutContent({ children }: { children: React.ReactNode }) {
@@ -41,8 +41,6 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <FirebaseClientProvider>
-      <AuthLayoutContent>{children}</AuthLayoutContent>
-    </FirebaseClientProvider>
+    <AuthLayoutContent>{children}</AuthLayoutContent>
   );
 }

@@ -1,3 +1,4 @@
+
 'use client'
 
 import { usePathname, useRouter } from "next/navigation";
@@ -29,41 +30,14 @@ import { Home, Briefcase, Users, Settings, LogOut, KeyRound, Eye, EyeOff, Buildi
 import { Logo } from "@/components/icons";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { useState, useEffect, useMemo, createContext, useContext, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 import type { UserProfile, Company } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { FirebaseClientProvider, useUser, useAuth, useDoc, useFirestore, useMemoFirebase, useCollection } from "@/firebase";
+import { useUser, useAuth, useDoc, useFirestore, useMemoFirebase, useCollection } from "@/firebase";
 import { doc, collection, updateDoc } from 'firebase/firestore';
 import { updatePassword } from "firebase/auth";
-
-import es from '@/lib/locales/es.json';
-import en from '@/lib/locales/en.json';
-
-type Language = 'es' | 'en';
-
-const translations = { es, en };
-
-type LanguageContextType = {
-  language: Language;
-  setLanguage: (language: Language) => void;
-  t: (key: string) => string;
-};
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
-};
-
-export const useTranslation = () => {
-  const { t, language } = useLanguage();
-  return { t, language };
-};
+import { useTranslation, useLanguage } from "@/app/layout";
 
 
 function PasswordChangeDialog({ open, onOpenChange, user, onPasswordChanged }: { open: boolean, onOpenChange: (open: boolean) => void, user: any, onPasswordChanged: () => void }) {
@@ -570,30 +544,7 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('es');
-
-  const t = useCallback((key: string): string => {
-    const keys = key.split('.');
-    let result: any = translations[language];
-    for (const k of keys) {
-      result = result?.[k];
-      if (result === undefined) {
-        // Fallback to English if key not found in current language
-        let fallbackResult: any = translations['en'];
-        for (const fk of keys) {
-          fallbackResult = fallbackResult?.[fk];
-        }
-        return fallbackResult || key;
-      }
-    }
-    return result || key;
-  }, [language]);
-  
   return (
-    <FirebaseClientProvider>
-      <LanguageContext.Provider value={{ language, setLanguage, t }}>
-        <AppLayoutContent>{children}</AppLayoutContent>
-      </LanguageContext.Provider>
-    </FirebaseClientProvider>
+      <AppLayoutContent>{children}</AppLayoutContent>
   );
 }
