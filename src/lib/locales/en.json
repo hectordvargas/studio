@@ -1,0 +1,274 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Welcome to your AI-powered recruitment center.",
+    "openPositions": "Open Positions",
+    "totalJobs": "total jobs",
+    "totalCandidates": "Total Candidates",
+    "inAllPositions": "Across all positions",
+    "newApplications": "New Applications",
+    "awaitingReview": "Awaiting review",
+    "candidatesByDepartment": "Candidates by Department",
+    "recentCandidates": "Recent Candidates",
+    "candidate": "Candidate",
+    "status": "Status"
+  },
+  "jobs": {
+    "title": "Jobs",
+    "description": "Manage your company's open positions.",
+    "publicView": "Public View",
+    "addJob": "Add Job",
+    "table": {
+      "title": "Title",
+      "company": "Company",
+      "department": "Department",
+      "status": "Status",
+      "candidates": "Candidates",
+      "published": "Published",
+      "actions": "Actions"
+    },
+    "actions": {
+      "openMenu": "Open menu",
+      "label": "Actions",
+      "details": "View Details",
+      "publicPage": "View Public Page",
+      "edit": "Edit",
+      "duplicate": "Duplicate",
+      "changeStatus": "Change Status",
+      "open": "Open",
+      "closed": "Closed",
+      "archived": "Archived",
+      "cancelled": "Cancelled",
+      "delete": "Delete"
+    },
+    "status": {
+      "Open": "Open",
+      "Closed": "Closed",
+      "Archived": "Archived",
+      "Cancelled": "Cancelled"
+    },
+    "toast": {
+      "duplicated": "Job Duplicated",
+      "duplicatedDescription": "Creating a new job with data from the original."
+    }
+  },
+  "candidates": {
+    "title": "Candidates",
+    "description": "Explore and manage all candidates in your database.",
+    "addCandidate": "Add Candidate",
+    "table": {
+      "name": "Name",
+      "position": "Position",
+      "actions": "Actions"
+    },
+    "actions": {
+      "viewProfile": "View Profile",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "applications": {
+    "title": "Applications",
+    "description": "Manage all candidate applications for different positions.",
+    "table": {
+      "candidate": "Candidate",
+      "appliedPosition": "Applied Position",
+      "status": "Status",
+      "applicationDate": "Application Date",
+      "actions": "Actions"
+    },
+    "noApplications": "There are no applications in the database.",
+    "actions": {
+      "viewApplication": "View Application",
+      "viewCandidateProfile": "View Candidate Profile",
+      "reject": "Reject"
+    },
+    "status": {
+      "Pending": "Pending",
+      "Screening": "Screening",
+      "Interview": "Interview",
+      "Assessment": "Assessment",
+      "Offer": "Offer",
+      "Hired": "Hired",
+      "Rejected": "Rejected"
+    }
+  },
+  "companies": {
+    "title": "Companies",
+    "description": "Manage company profiles.",
+    "addCompany": "Add Company",
+    "activeOffers": "active offers",
+    "viewMore": "View more",
+    "actions": {
+      "viewCompany": "View Company",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "evaluations": {
+    "title": "Evaluations Catalog",
+    "description": "Manage the available psychometric, technical, and language evaluations.",
+    "addEvaluation": "Add Evaluation",
+    "tabs": {
+      "psychometric": "Psychometric Evaluations",
+      "technical": "Technical Evaluations",
+      "languages": "Language Evaluations"
+    },
+    "psychometric": {
+      "title": "Psychometric Evaluations",
+      "description": "Tests to measure aptitudes, personality, and behavior."
+    },
+    "technical": {
+      "title": "Technical Evaluations",
+      "description": "Tests to assess specific technical skills and knowledge."
+    },
+    "languages": {
+      "title": "Language Evaluations",
+      "description": "Tests to measure proficiency in different languages."
+    },
+    "items": "Items",
+    "evaluatedFactors": "Evaluated Factors",
+    "organizationalLevel": "Organizational Level",
+    "educationLevel": "Education Level",
+    "evaluationCriteria": "Evaluation Criteria",
+    "sampleItems": "Sample Items",
+    "tryEvaluation": "Try Evaluation",
+    "noLanguageTests": "No language evaluations available."
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account and application settings.",
+    "tabs": {
+      "userManagement": "Users",
+      "roles": "Roles & Permissions",
+      "publicPortal": "Public Portal",
+      "notifications": "Notifications",
+      "integrations": "Integrations"
+    }
+  },
+  "layout": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "jobs": "Jobs",
+      "candidates": "Candidates",
+      "applications": "Applications",
+      "companies": "Companies",
+      "evaluations": "Evaluations",
+      "publicView": "Public View",
+      "settings": "Settings"
+    },
+    "userMenu": {
+      "updatePassword": "Update password",
+      "logout": "Log out"
+    },
+    "companySwitcher": {
+      "title": "Manage Companies",
+      "description": "Select a company to view and manage its information.",
+      "selectCompany": "Select company"
+    },
+    "languageSwitcher": {
+      "label": "Analysis Language",
+      "es": "Spanish",
+      "en": "English"
+    },
+    "passwordDialog": {
+      "title": "Update Password",
+      "description": "Enter your new password below. It must be at least 6 characters long.",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "saving": "Saving..."
+    },
+     "forcePasswordDialog": {
+      "title": "Password Update Required",
+      "description": "For security reasons, you must update your temporary password before continuing.",
+      "saveAndContinue": "Save and Continue"
+    },
+    "toast": {
+      "logoutSuccess": "Logged Out",
+      "logoutSuccessDescription": "You have been successfully logged out.",
+      "logoutError": "Logout Error",
+      "logoutErrorDescription": "There was a problem trying to log you out.",
+      "passwordUpdateSuccess": "Password Updated",
+      "passwordUpdateSuccessDescription": "Your password has been successfully updated.",
+      "passwordUpdateError": "Error updating password",
+      "passwordUpdateErrorMatch": "Passwords do not match.",
+      "passwordUpdateErrorLength": "Password must be at least 6 characters.",
+      "passwordUpdateErrorUnexpected": "An unexpected error occurred.",
+      "passwordUpdateErrorWeak": "The password is too weak.",
+      "passwordUpdateErrorReauth": "This operation requires a recent login. Please log out and log back in."
+    }
+  },
+  "login": {
+    "title": "Log in to access your dashboard.",
+    "titleRegister": "Create an account to start managing talent.",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Log In",
+    "registerButton": "Create Account",
+    "loggingIn": "Logging in...",
+    "registering": "Creating account...",
+    "tabs": {
+      "login": "Log In",
+      "register": "Sign Up"
+    },
+    "rootHint": "Use email <1>system@kognisync.com</1> and password <3>password123</3> to access as Root.",
+    "publicHint": "Or view public jobs",
+    "toast": {
+      "loginSuccess": "Login Successful",
+      "loginSuccessDescription": "Welcome back!",
+      "loginError": "Login Failed",
+      "loginErrorDescription": "The email or password is incorrect.",
+      "loginErrorTooMany": "Too many failed attempts. Try again later.",
+      "registerSuccess": "Account Created & Logged In",
+      "registerSuccessDescription": "Welcome! A new account has been created for you.",
+      "registerError": "Account Creation Failed",
+      "registerErrorDescription": "Could not create the account.",
+      "registerErrorEmailInUse": "This email is already in use. Try logging in.",
+      "registerErrorWeakPassword": "The password is too weak. It must be at least 6 characters long."
+    }
+  },
+  "publicPages": {
+    "login": "Log In",
+    "footer": {
+      "line1": "&copy; {year} Altiaweb Ltd. All rights reserved.",
+      "line2": "71-75, Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom",
+      "line3_1": "Company Nr: 14174666",
+      "line3_2": "VAT Registration Nr: 473 3229 90",
+      "line3_3": "ICO Registration Nr: ZB506149",
+      "line4_1": "+44 20 3838-0707",
+      "line4_2": "support@altiaweb.co.uk"
+    },
+    "main": {
+      "title": "Find Your Next Challenge",
+      "description": "Explore the opportunities available at our partner companies.",
+      "noJobs": "There are no open positions at the moment.",
+      "noJobsHint": "Check back later for new opportunities."
+    },
+    "company": {
+      "openPositions": "Open Positions",
+      "noJobs": "There are no open positions at the moment.",
+      "noJobsHint": "Check back later for new opportunities."
+    },
+    "job": {
+      "applyNow": "Apply Now",
+      "jobDetails": "Job Details",
+      "location": "Location",
+      "salary": "Salary",
+      "contractType": "Contract Type",
+      "schedule": "Schedule",
+      "published": "Published",
+      "jobDescription": "Job Description",
+      "responsibilities": "Responsibilities",
+      "requirements": "Key Requirements",
+      "benefits": "Benefits",
+      "requiredEducation": "Required Education",
+      "educationLevel": "Education Level",
+      "competencies": "Competencies",
+      "languages": "Languages"
+    }
+  }
+}

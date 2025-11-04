@@ -1,0 +1,58 @@
+{
+  "placeholderImages": [
+    {
+      "id": "candidate-1",
+      "description": "Photo of a professional woman",
+      "imageUrl": "https://images.unsplash.com/photo-1573496358961-3c82861ab8f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b21hbiUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3NjE0NzIzNzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman professional"
+    },
+    {
+      "id": "candidate-2",
+      "description": "Photo of a professional man",
+      "imageUrl": "https://images.unsplash.com/photo-1708458662177-8e12e1b6702d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzYxNDk1ODIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man professional"
+    },
+    {
+      "id": "candidate-3",
+      "description": "Photo of a person smiling",
+      "imageUrl": "https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2MTUzOTI1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "candidate-4",
+      "description": "Photo of a person in an office",
+      "imageUrl": "https://images.unsplash.com/photo-1630659508975-00941de4d982?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBvZmZpY2V8ZW58MHx8fHwxNzYxNDUwMzk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person office"
+    },
+    {
+      "id": "candidate-5",
+      "description": "Photo of a software developer",
+      "imageUrl": "https://images.unsplash.com/photo-1607799632518-da91dd151b38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkZXZlbG9wZXIlMjBzb2Z0d2FyZXxlbnwwfHx8fDE3NjE1NDE3Njd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "developer software"
+    },
+    {
+      "id": "candidate-6",
+      "description": "Photo of a designer",
+      "imageUrl": "https://images.unsplash.com/photo-1753164597299-561556372d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkZXNpZ25lciUyMGNyZWF0aXZlfGVufDB8fHx8MTc2MTU0MTc2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "designer creative"
+    },
+    {
+      "id": "job-cover-1",
+      "description": "Abstract programming background",
+      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2Rpbmd8ZW58MHx8fHwxNzYxNjE1ODk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "code programming"
+    },
+    {
+      "id": "job-cover-2",
+      "description": "Business meeting collaboration",
+      "imageUrl": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxidXNpbmVzcyUyMG1lZXRpbmd8ZW58MHx8fHwxNzYxNjE1OTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "business meeting"
+    },
+    {
+      "id": "job-cover-3",
+      "description": "Creative design workspace",
+      "imageUrl": "https://images.unsplash.com/photo-1581472534579-ac1f86230f81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkZXNpZ24lMjB3b3Jrc3BhY2V8ZW58MHx8fHwxNzYxNjE2MDAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design workspace"
+    }
+  ]
+}

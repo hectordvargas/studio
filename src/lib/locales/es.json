@@ -1,0 +1,274 @@
+{
+  "dashboard": {
+    "title": "Panel",
+    "description": "Bienvenido a tu centro de reclutamiento impulsado por IA.",
+    "openPositions": "Posiciones Abiertas",
+    "totalJobs": "ofertas de trabajo en total",
+    "totalCandidates": "Candidatos Totales",
+    "inAllPositions": "En todas las posiciones",
+    "newApplications": "Nuevas Aplicaciones",
+    "awaitingReview": "Esperando revisión",
+    "candidatesByDepartment": "Candidatos por Departamento",
+    "recentCandidates": "Candidatos Recientes",
+    "candidate": "Candidato",
+    "status": "Estado"
+  },
+  "jobs": {
+    "title": "Ofertas de Trabajo",
+    "description": "Gestiona las posiciones abiertas de tu empresa.",
+    "publicView": "Vista Pública",
+    "addJob": "Añadir Empleo",
+    "table": {
+      "title": "Título",
+      "company": "Empresa",
+      "department": "Departamento",
+      "status": "Estado",
+      "candidates": "Candidatos",
+      "published": "Publicado",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "openMenu": "Abrir menú",
+      "label": "Acciones",
+      "details": "Ver Detalles",
+      "publicPage": "Ver Página Pública",
+      "edit": "Editar",
+      "duplicate": "Duplicar",
+      "changeStatus": "Cambiar Estado",
+      "open": "Abierta",
+      "closed": "Cerrada",
+      "archived": "Archivada",
+      "cancelled": "Cancelada",
+      "delete": "Eliminar"
+    },
+    "status": {
+      "Open": "Abierta",
+      "Closed": "Cerrada",
+      "Archived": "Archivada",
+      "Cancelled": "Cancelada"
+    },
+    "toast": {
+      "duplicated": "Plaza Duplicada",
+      "duplicatedDescription": "Creando una nueva plaza con los datos de la original."
+    }
+  },
+  "candidates": {
+    "title": "Candidatos",
+    "description": "Explora y gestiona todos los candidatos en tu base de datos.",
+    "addCandidate": "Añadir Candidato",
+    "table": {
+      "name": "Nombre",
+      "position": "Puesto",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "viewProfile": "Ver Perfil",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "applications": {
+    "title": "Aplicaciones",
+    "description": "Gestiona todas las postulaciones de los candidatos a las diferentes plazas.",
+    "table": {
+      "candidate": "Candidato",
+      "appliedPosition": "Plaza Aplicada",
+      "status": "Estado",
+      "applicationDate": "Fecha de Aplicación",
+      "actions": "Acciones"
+    },
+    "noApplications": "No hay aplicaciones en la base de datos.",
+    "actions": {
+      "viewApplication": "Ver Aplicación",
+      "viewCandidateProfile": "Ver Perfil del Candidato",
+      "reject": "Rechazar"
+    },
+    "status": {
+      "Pending": "Pendiente",
+      "Screening": "Revisión",
+      "Interview": "Entrevista",
+      "Assessment": "Evaluación",
+      "Offer": "Oferta",
+      "Hired": "Contratado",
+      "Rejected": "Rechazado"
+    }
+  },
+  "companies": {
+    "title": "Empresas",
+    "description": "Gestiona los perfiles de las empresas.",
+    "addCompany": "Añadir Empresa",
+    "activeOffers": "ofertas activas",
+    "viewMore": "Ver más",
+    "actions": {
+      "viewCompany": "Ver Empresa",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "evaluations": {
+    "title": "Catálogo de Evaluaciones",
+    "description": "Gestiona las evaluaciones psicométricas, técnicas y de idiomas disponibles.",
+    "addEvaluation": "Añadir Evaluación",
+    "tabs": {
+      "psychometric": "Evaluaciones Psicométricas",
+      "technical": "Evaluaciones Técnicas",
+      "languages": "Evaluaciones de Idiomas"
+    },
+    "psychometric": {
+      "title": "Evaluaciones Psicométricas",
+      "description": "Pruebas para medir aptitudes, personalidad y comportamiento."
+    },
+    "technical": {
+      "title": "Evaluaciones Técnicas",
+      "description": "Pruebas para evaluar habilidades y conocimientos técnicos específicos."
+    },
+    "languages": {
+      "title": "Evaluaciones de Idiomas",
+      "description": "Pruebas para medir la competencia en diferentes idiomas."
+    },
+    "items": "Reactivos",
+    "evaluatedFactors": "Factores Evaluados",
+    "organizationalLevel": "Nivel Organizacional",
+    "educationLevel": "Escolaridad",
+    "evaluationCriteria": "Criterios de Evaluación",
+    "sampleItems": "Reactivos de Ejemplo",
+    "tryEvaluation": "Probar Evaluación",
+    "noLanguageTests": "No hay evaluaciones de idiomas disponibles."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "description": "Gestiona tu cuenta y la configuración de la aplicación.",
+    "tabs": {
+      "userManagement": "Usuarios",
+      "roles": "Roles y Permisos",
+      "publicPortal": "Portal Público",
+      "notifications": "Notificaciones",
+      "integrations": "Integraciones"
+    }
+  },
+  "layout": {
+    "nav": {
+      "dashboard": "Panel",
+      "jobs": "Empleos",
+      "candidates": "Candidatos",
+      "applications": "Aplicaciones",
+      "companies": "Empresas",
+      "evaluations": "Evaluaciones",
+      "publicView": "Vista Pública",
+      "settings": "Ajustes"
+    },
+    "userMenu": {
+      "updatePassword": "Actualizar contraseña",
+      "logout": "Cerrar sesión"
+    },
+    "companySwitcher": {
+      "title": "Gestionar Empresas",
+      "description": "Selecciona una empresa para ver y gestionar su información.",
+      "selectCompany": "Seleccionar empresa"
+    },
+    "languageSwitcher": {
+      "label": "Idioma de Análisis",
+      "es": "Español",
+      "en": "Inglés"
+    },
+    "passwordDialog": {
+      "title": "Actualizar Contraseña",
+      "description": "Ingresa tu nueva contraseña a continuación. Debe tener al menos 6 caracteres.",
+      "newPassword": "Nueva Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "cancel": "Cancelar",
+      "save": "Guardar Cambios",
+      "saving": "Guardando..."
+    },
+    "forcePasswordDialog": {
+      "title": "Actualización de Contraseña Requerida",
+      "description": "Por seguridad, debes actualizar tu contraseña temporal antes de continuar.",
+      "saveAndContinue": "Guardar y Continuar"
+    },
+    "toast": {
+      "logoutSuccess": "Sesión Cerrada",
+      "logoutSuccessDescription": "Has cerrado sesión exitosamente.",
+      "logoutError": "Error al cerrar sesión",
+      "logoutErrorDescription": "Hubo un problema al intentar cerrar tu sesión.",
+      "passwordUpdateSuccess": "Contraseña Actualizada",
+      "passwordUpdateSuccessDescription": "Tu contraseña ha sido actualizada exitosamente.",
+      "passwordUpdateError": "Error al actualizar la contraseña",
+      "passwordUpdateErrorMatch": "Las contraseñas no coinciden.",
+      "passwordUpdateErrorLength": "La contraseña debe tener al menos 6 caracteres.",
+      "passwordUpdateErrorUnexpected": "Ocurrió un error inesperado.",
+      "passwordUpdateErrorWeak": "La contraseña es demasiado débil.",
+      "passwordUpdateErrorReauth": "Esta operación requiere un inicio de sesión reciente. Por favor, cierra sesión y vuelve a iniciarla."
+    }
+  },
+  "login": {
+    "title": "Inicia sesión para acceder a tu panel de control.",
+    "titleRegister": "Crea una cuenta para empezar a gestionar talento.",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "loginButton": "Iniciar Sesión",
+    "registerButton": "Crear Cuenta",
+    "loggingIn": "Accediendo...",
+    "registering": "Registrando...",
+    "tabs": {
+      "login": "Iniciar Sesión",
+      "register": "Registrarse"
+    },
+    "rootHint": "Usa el correo <1>system@kognisync.com</1> y la contraseña <3>password123</3> para acceder como Root.",
+    "publicHint": "O ver las plazas públicas",
+    "toast": {
+      "loginSuccess": "Inicio de Sesión Exitoso",
+      "loginSuccessDescription": "¡Bienvenido de nuevo!",
+      "loginError": "Fallo en el Inicio de Sesión",
+      "loginErrorDescription": "El correo o la contraseña son incorrectos.",
+      "loginErrorTooMany": "Demasiados intentos fallidos. Intenta de nuevo más tarde.",
+      "registerSuccess": "Cuenta Creada y Sesión Iniciada",
+      "registerSuccessDescription": "¡Bienvenido! Se ha creado una nueva cuenta para ti.",
+      "registerError": "Fallo en la Creación de Cuenta",
+      "registerErrorDescription": "No se pudo crear la cuenta.",
+      "registerErrorEmailInUse": "Este correo electrónico ya está en uso. Intenta iniciar sesión.",
+      "registerErrorWeakPassword": "La contraseña es demasiado débil. Debe tener al menos 6 caracteres."
+    }
+  },
+  "publicPages": {
+    "login": "Iniciar Sesión",
+    "footer": {
+      "line1": "&copy; {year} Altiaweb Ltd. Todos los derechos reservados.",
+      "line2": "71-75, Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom",
+      "line3_1": "Company Nr: 14174666",
+      "line3_2": "VAT Registration Nr: 473 3229 90",
+      "line3_3": "ICO Registration Nr: ZB506149",
+      "line4_1": "+44 20 3838-0707",
+      "line4_2": "support@altiaweb.co.uk"
+    },
+    "main": {
+      "title": "Encuentra tu Próximo Desafío",
+      "description": "Explora las oportunidades disponibles en nuestras empresas asociadas.",
+      "noJobs": "No hay plazas abiertas en este momento.",
+      "noJobsHint": "Vuelve a consultar más tarde para ver nuevas oportunidades."
+    },
+    "company": {
+      "openPositions": "Plazas Abiertas",
+      "noJobs": "No hay plazas abiertas en este momento.",
+      "noJobsHint": "Vuelve a consultar más tarde para ver nuevas oportunidades."
+    },
+    "job": {
+      "applyNow": "Aplicar Ahora",
+      "jobDetails": "Detalles del Empleo",
+      "location": "Ubicación",
+      "salary": "Salario",
+      "contractType": "Tipo de Contrato",
+      "schedule": "Horario",
+      "published": "Publicado",
+      "jobDescription": "Descripción del Empleo",
+      "responsibilities": "Responsabilidades",
+      "requirements": "Requisitos Clave",
+      "benefits": "Beneficios",
+      "requiredEducation": "Educacion Requerida",
+      "educationLevel": "Nivel Educativo",
+      "competencies": "Competencias",
+      "languages": "Idiomas"
+    }
+  }
+}

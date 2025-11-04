@@ -1,0 +1,62 @@
+## PLANTILLA PARA DESCRIPCIÓN DE PLAZA ##
+
+Instrucciones: Rellena la mayor cantidad de información posible en esta plantilla. Luego, sube este archivo o copia y pega el contenido en el asistente de IA para autocompletar el formulario de creación de plaza.
+
+---
+
+[ Título del Puesto ]
+Ej: Desarrollador Frontend Senior
+
+---
+
+[ Descripción General del Puesto ]
+Ej: Buscamos un Desarrollador Frontend Senior con experiencia en React y TypeScript para unirse a nuestro equipo de innovación. Serás responsable de construir interfaces de usuario modernas, responsivas y de alto rendimiento.
+
+---
+
+[ Responsabilidades Principales ]
+- Desarrollar y mantener componentes de UI reutilizables.
+- Colaborar con diseñadores y desarrolladores backend.
+- Optimizar aplicaciones para máxima velocidad y escalabilidad.
+- Escribir pruebas unitarias y de integración.
+
+---
+
+[ Requisitos ]
+- 5+ años de experiencia en desarrollo frontend.
+- Dominio de JavaScript, TypeScript, React y Next.js.
+- Experiencia con APIs RESTful.
+- Conocimiento de metodologías ágiles como Scrum.
+
+---
+
+[ Competencias ]
+- Trabajo en equipo
+- Resolución de problemas
+- Comunicación asertiva
+- Proactividad
+
+---
+
+[ Idiomas ]
+- Inglés: Avanzado (lectura, escritura y conversación)
+- Español: Nativo
+
+---
+
+[ Experiencia ]
+Ej: Mínimo 5 años de experiencia comprobable en roles similares.
+
+---
+
+[ Educación ]
+- Nivel: Educación Superior - Pregrado Completa (Licenciatura/Ingeniería)
+- Carrera: Ingeniería en Informática, Ciencias de la Computación o carrera afín.
+
+---
+
+[ Beneficios ]
+- Seguro médico y de vida
+- Trabajo remoto flexible
+- Bonos por desempeño
+- Presupuesto para formación continua
