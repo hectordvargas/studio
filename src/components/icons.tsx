@@ -22,8 +22,8 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         
         {/* <!-- Text: AxusHire --> */}
         <text x="5" y="27" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="url(#gradient)">
-            axus
-            <tspan fill="url(#gradient-accent)">HIRE</tspan>
+            Kogni
+            <tspan fill="url(#gradient-accent)">SYNC</tspan>
         </text>
     </svg>
   );
