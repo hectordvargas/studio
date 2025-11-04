@@ -1,17 +1,18 @@
-import type { Metadata } from 'next';
+'use client';
+
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-
-export const metadata: Metadata = {
-  title: 'KogniSYNC',
-  description: 'Portal de empleo impulsado por IA para análisis y clasificación de candidatos.',
-};
+import { usePathname } from 'next/navigation';
+import AppLayout from './AppLayout'; // Adjusted import
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAppRoute = !['/'].includes(pathname);
+
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
@@ -21,7 +22,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans antialiased">
-        {children}
+        {isAppRoute ? <AppLayout>{children}</AppLayout> : children}
         <Toaster />
       </body>
     </html>
