@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
@@ -11,7 +12,7 @@ import { Candidate, Job, Application } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { useTranslation } from "../layout";
+import { useTranslation } from "@/app/layout";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, where, orderBy, limit } from "firebase/firestore";
 

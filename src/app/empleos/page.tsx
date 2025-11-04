@@ -43,6 +43,7 @@ function PublicFooter() {
 
 export default function PublicJobsPage() {
     const firestore = useFirestore();
+    const { t } = useTranslation();
     
     const jobsQuery = useMemoFirebase(() => firestore ? query(collection(firestore, 'jobs'), where('status', '==', 'Open')) : null, [firestore]);
     const { data: openJobs, isLoading: isLoadingJobs } = useCollection<Job>(jobsQuery);
@@ -56,8 +57,8 @@ export default function PublicJobsPage() {
         <>
             <div className="container mx-auto max-w-5xl py-8 px-4">
                 <header className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-2">Encuentra tu Próximo Desafío</h1>
-                    <p className="text-lg text-muted-foreground">Explora las oportunidades disponibles en nuestras empresas asociadas.</p>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-2">{t('publicPages.main.title')}</h1>
+                    <p className="text-lg text-muted-foreground">{t('publicPages.main.description')}</p>
                 </header>
                 {isLoading ? (
                     <div className="flex justify-center items-center py-16">
@@ -115,8 +116,8 @@ export default function PublicJobsPage() {
                     })}
                      {openJobs?.length === 0 && (
                         <div className="text-center py-16 border-2 border-dashed rounded-lg">
-                            <h3 className="text-xl font-medium text-muted-foreground">No hay plazas abiertas en este momento.</h3>
-                            <p className="text-sm text-muted-foreground mt-2">Vuelve a consultar más tarde para ver nuevas oportunidades.</p>
+                            <h3 className="text-xl font-medium text-muted-foreground">{t('publicPages.main.noJobs')}</h3>
+                            <p className="text-sm text-muted-foreground mt-2">{t('publicPages.main.noJobsHint')}</p>
                         </div>
                     )}
                 </div>

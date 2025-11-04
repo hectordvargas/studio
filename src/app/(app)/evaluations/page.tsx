@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { DashboardHeader } from "@/components/dashboard-header";
@@ -13,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { psychometricCategories, technicalTests } from "@/lib/evaluations-data";
-import { useTranslation } from "../layout";
+import { useTranslation } from "@/app/layout";
 
 
 export default function EvaluationsPage() {

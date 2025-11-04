@@ -35,7 +35,7 @@ export const useTranslation = () => {
   if (!context) {
     throw new Error("useTranslation must be used within a LanguageProvider");
   }
-  return context;
+  return { t: context.t };
 };
 // --- End Language Provider Setup ---
 

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,7 @@ import { Job, Company, Application } from "@/lib/data";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useMemo } from "react";
-import { useTranslation } from "../layout";
+import { useTranslation } from "@/app/layout";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, where } from "firebase/firestore";
 
