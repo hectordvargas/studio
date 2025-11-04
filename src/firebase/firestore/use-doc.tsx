@@ -7,11 +7,11 @@ import {
   DocumentData,
   FirestoreError,
   DocumentSnapshot,
-  doc,
-  Firestore,
 } from 'firebase/firestore';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError } from '@/firebase/errors';
+import * as mockData from '@/lib/data';
+import { useFirestore } from '@/firebase/provider';
 
 /** Utility type to add an 'id' field to a given type T. */
 type WithId<T> = T & { id: string };
@@ -29,11 +29,10 @@ export interface UseDocResult<T> {
 /**
  * React hook to subscribe to a single Firestore document in real-time.
  * Handles nullable references.
+ * If Firestore is not available, it will return mock data based on the document path.
  * 
- * IMPORTANT! YOU MUST MEMOIZE the inputted memoizedTargetRefOrQuery or BAD THINGS WILL HAPPEN
- * use useMemo to memoize it per React guidence.  Also make sure that it's dependencies are stable
- * references
- *
+ * IMPORTANT! YOU MUST MEMOIZE the inputted memoizedDocRef or BAD THINGS WILL HAPPEN
+ * use useMemoFirebase to memoize it per React guidence.  Also make sure that it's dependencies are stable references
  *
  * @template T Optional type for document data. Defaults to any.
  * @param {DocumentReference<DocumentData> | null | undefined} docRef -
@@ -48,13 +47,41 @@ export function useDoc<T = any>(
   const [data, setData] = useState<StateDataType>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<FirestoreError | Error | null>(null);
-
+  const firestore = useFirestore();
+  
   useEffect(() => {
-    if (!memoizedDocRef) {
-      setData(null);
-      setIsLoading(false);
-      setError(null);
-      return;
+    // If Firebase is not available or ref is null, use mock data
+    if (!firestore || !memoizedDocRef) {
+        setIsLoading(true);
+        const pathSegments = memoizedDocRef?.path.split('/');
+        const collection = pathSegments?.[0];
+        const docId = pathSegments?.[1];
+
+        let mockResult: any = null;
+        if (collection && docId) {
+            const mockCollection = (mockData as any)[collection];
+            if (mockCollection && Array.isArray(mockCollection)) {
+                mockResult = mockCollection.find(item => item.id === docId) || null;
+            }
+        } else if (collection === 'users' && docId === 'mock-user-id') { // Special case for mock user profile
+             mockResult = {
+                id: 'mock-user-id',
+                displayName: 'Admin User',
+                email: 'admin@axushire.com',
+                role: 'root',
+                companyIds: [],
+                isGlobalAdmin: true,
+                canManageAllCompanies: true,
+            };
+        }
+        
+        // Simulate async fetching
+        setTimeout(() => {
+            setData(mockResult as StateDataType);
+            setIsLoading(false);
+        }, 500);
+
+        return;
     }
 
     setIsLoading(true);
@@ -66,7 +93,6 @@ export function useDoc<T = any>(
         if (snapshot.exists()) {
           setData({ ...(snapshot.data() as T), id: snapshot.id });
         } else {
-          // Document does not exist
           setData(null);
         }
         setError(null);
@@ -82,13 +108,12 @@ export function useDoc<T = any>(
         setData(null)
         setIsLoading(false)
 
-        // trigger global error propagation
         errorEmitter.emit('permission-error', contextualError);
       }
     );
 
     return () => unsubscribe();
-  }, [memoizedDocRef]);
+  }, [memoizedDocRef, firestore]);
 
   return { data, isLoading, error };
 }

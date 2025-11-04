@@ -12,11 +12,21 @@ import {
 import { errorEmitter } from '@/firebase/error-emitter';
 import {FirestorePermissionError} from '@/firebase/errors';
 
+// Helper to check if Firestore is available
+const isFirestoreAvailable = (docRef: DocumentReference | CollectionReference): boolean => {
+    return !!docRef.firestore;
+};
+
 /**
  * Initiates a setDoc operation for a document reference.
- * Does NOT await the write operation internally.
+ * In mock mode, it logs the action to the console.
  */
 export function setDocumentNonBlocking(docRef: DocumentReference, data: any, options: SetOptions) {
+  if (!isFirestoreAvailable(docRef)) {
+      console.log(`[MOCK] Firestore: Setting document in ${docRef.path}`, { data, options });
+      return;
+  }
+
   setDoc(docRef, data, options).catch(error => {
     errorEmitter.emit(
       'permission-error',
@@ -27,16 +37,20 @@ export function setDocumentNonBlocking(docRef: DocumentReference, data: any, opt
       })
     )
   })
-  // Execution continues immediately
 }
 
 
 /**
  * Initiates an addDoc operation for a collection reference.
- * Does NOT await the write operation internally.
- * Returns the Promise for the new doc ref, but typically not awaited by caller.
+ * In mock mode, it logs the action to the console.
  */
 export function addDocumentNonBlocking(colRef: CollectionReference, data: any) {
+  if (!isFirestoreAvailable(colRef)) {
+      console.log(`[MOCK] Firestore: Adding document to ${colRef.path}`, { data });
+      // In mock mode, we can't return a real DocRef promise, so we return a resolved promise of null.
+      return Promise.resolve(null);
+  }
+  
   const promise = addDoc(colRef, data)
     .catch(error => {
       errorEmitter.emit(
@@ -54,9 +68,14 @@ export function addDocumentNonBlocking(colRef: CollectionReference, data: any) {
 
 /**
  * Initiates an updateDoc operation for a document reference.
- * Does NOT await the write operation internally.
+ * In mock mode, it logs the action to the console.
  */
 export function updateDocumentNonBlocking(docRef: DocumentReference, data: any) {
+  if (!isFirestoreAvailable(docRef)) {
+      console.log(`[MOCK] Firestore: Updating document in ${docRef.path}`, { data });
+      return;
+  }
+
   updateDoc(docRef, data)
     .catch(error => {
       errorEmitter.emit(
@@ -73,9 +92,14 @@ export function updateDocumentNonBlocking(docRef: DocumentReference, data: any) 
 
 /**
  * Initiates a deleteDoc operation for a document reference.
- * Does NOT await the write operation internally.
+ * In mock mode, it logs the action to the console.
  */
 export function deleteDocumentNonBlocking(docRef: DocumentReference) {
+  if (!isFirestoreAvailable(docRef)) {
+      console.log(`[MOCK] Firestore: Deleting document from ${docRef.path}`);
+      return;
+  }
+
   deleteDoc(docRef)
     .catch(error => {
       errorEmitter.emit(
